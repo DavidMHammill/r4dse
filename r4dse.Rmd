@@ -1,0 +1,215 @@
+---
+title: "R For Data Science Exercises"
+author: "David Mayer Hammill"
+date: "12/27/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+```{r}
+install.packages("tidyverse")
+```
+```{r}
+library(tidyverse)
+```
+```{r}
+install.packages(c("nycflights13", "gapminder", "Lahman"))
+```
+```{r}
+ggplot(data=mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+```{r}
+ggplot(data = mpg) + 
+  geom_function(mapping=aes(x=manufacturer, y=hwy))
+```
+```{r}
+ggplot(data=mpg)
+```
+```{r}
+dim(mtcars)
+```
+```{r}
+#4
+  ggplot(data=mpg) +
+  geom_point(mapping = aes(x = hwy, y = cyl))
+```
+```{r}
+#5
+ggplot(data=mpg) +
+  geom_point(mapping = aes(x = class, y = drv))
+```
+```{r}
+#Highway Vs. Displacement
+ggplot(data=mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy))
+```
+```{r}
+#Mapping Aesthetics to Variables
+  ##HIghway MPG and Engine Dispacement
+ggplot(data = mpg) +
+  geom_jitter(mapping=aes(x=displ, y=hwy, color=class))
+             
+```
+```{r}
+#Mapping Aesthetics to Variables
+  ##HIghway MPG and Engine Dispacement
+#Top
+ggplot(data = mpg)
+  geom_jitter(mapping=aes(x=disp, y=hwy, alpha=class))
+  
+#Bottom
+ggplot(data = mpg)
+  geom_jitter(mapping=aes(x=disp, y=hwy, shape=class))
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy), color = "blue")
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_jitter(mapping = aes(x = displ, y = hwy), color = "yellow")
+```
+```{r}
+#Exercise #1
+ggplot(data = mpg) +
+```
+
+
+```{r}
+geom_jitter(mapping = aes(x = displ, y = hwy), color = "yellow")
+```
+
+
+```{r}
+)
+```
+```{r}
+#Facet Wrap
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+```
+```{r}
+head(mpg)
+
+```
+```{r}
+ggplot(data=mpg)+
+  geom_jitter(mapping =aes(x= displ, y=cyl, color=cty)
+  )
+```
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = trans, y = hwy, color = cty, size = cty))
+```
+```{r}
+lty <- c("solid", "dashed", "dotted", "dotdash", "longdash", "twodash")
+linetypes <- data.frame(
+  y = seq_along(lty),
+  lty = lty
+) 
+ggplot(linetypes, aes(0, y)) + 
+  geom_segment(aes(xend = 5, yend = y, linetype = lty)) + 
+  scale_linetype_identity() + 
+  geom_text(aes(label = lty), hjust = 0, nudge_y = 0.2) +
+  scale_x_continuous(NULL, breaks = NULL) + 
+  scale_y_reverse(NULL, breaks = NULL)
+```
+```{r}
+head(delNidoData)
+```
+```{r}
+#Del Nido Data
+ggplot(data = delNidoData) +
+  geom_point(mapping = aes(x = urine_output, y = hemoconcentrator_used), color = "yellow")
+```
+```{r}
+ggplot(data = delNidoData) +
+  geom_point(mapping = aes(x = preopcreati, y = hwy)) +
+  facet_wrap(~ class, nrow = 2)
+```
+
+```{r}
+tbl_sum(delNidoData)
+tbl_vars(delNidoData)
+```
+
+```{r}
+merge(delNidoData, Creatinine_Table_1, by = c("PID"))
+```
+```{r}
+#Exercise 3.5.1 Facet On A Continuous Variable
+ggplot(mpg, aes(x=displ, y= hwy)) +
+  geom_point() +
+  facet_grid(.~ cty)
+```
+```{r}
+
+```
+
+```{r}
+#left
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y= hwy))
+
+#Right
+ggplot(data=mpg) +
+  geom_smooth(mapping = aes(x=displ, y = hwy, linetypes= drv))
+```
+
+```{r}
+#Exercises
+#1.Geom used to draw line chart would be geom_abline
+#2.
+ggplot(
+  data=mpg,
+  mapping = aes(x=displ, y= hwy, color=drv)
+) +
+  geom_point() +
+  geom_smooth(se=FALSE)
+```
+```{r}
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth()
+
+```
+```{r}
+ggplot() +
+  geom_point(
+    data = mpg,
+    mapping = aes(x = displ, y = hwy)
+  ) +
+  geom_smooth(
+    data = mpg,
+    mapping = aes(x = displ, y = hwy)
+  )
+```
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth(se = FALSE)
+```
+
